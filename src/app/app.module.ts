@@ -21,6 +21,10 @@ const appRoutes: Routes = [
   {path: 'connexion', component: ConnexionComponent},
   {path: '', component: ConnexionComponent},
   {path: 'not-found', component: NotFoundComponent},
+  {path: 'monitor', component: MonitoringComponent},
+  {path: 'etablissements', component: EtablissementsComponent},
+  {path: 'utilisateurs', component: UtilisateursComponent},
+  {path: 'evenements', component: EvenementsComponent},
   {path: '**', redirectTo: '/not-found'}
 ];
 
