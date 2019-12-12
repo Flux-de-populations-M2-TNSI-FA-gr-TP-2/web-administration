@@ -9,6 +9,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material';
+import { MenuComponent } from './menu/menu.component';
+import { EtablissementsComponent } from './etablissements/etablissements.component';
+import { EvenementsComponent } from './evenements/evenements.component';
+import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+import { MonitoringComponent } from './monitoring/monitoring.component';
 
 
 const appRoutes: Routes = [
@@ -24,7 +29,12 @@ const appRoutes: Routes = [
     AppComponent,
     ConnexionComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent,
+    EtablissementsComponent,
+    EvenementsComponent,
+    UtilisateursComponent,
+    MonitoringComponent
   ],
   imports: [
     BrowserModule,
