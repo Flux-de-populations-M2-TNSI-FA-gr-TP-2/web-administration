@@ -28,5 +28,9 @@ $Web-Administration-theme: mat-light-theme($Web-Administration-primary, $Web-Adm
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; font-size: 15px !important; }
+
+body {background-color:#d8d8d8 !important; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; min-height: 2000px; padding-top: 70px;}
+
+.btn-info{background-color:#4b9b95 !important;}
+
