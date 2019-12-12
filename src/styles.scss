@@ -15,7 +15,7 @@
 $Web-Administration-primary: mat-palette($mat-indigo);
 $Web-Administration-accent: mat-palette($mat-pink, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
+// The warn palette is optional (defaults to red).	
 $Web-Administration-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
@@ -28,9 +28,12 @@ $Web-Administration-theme: mat-light-theme($Web-Administration-primary, $Web-Adm
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; font-size: 15px !important; }
+html, body { width: 100% !important ;height: 100% !important; font-size: 15px !important;}
 
-body {background-color:#d8d8d8 !important; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; min-height: 2000px;}
 
-.btn-info{background-color:#4b9b95 !important;}
+h1, .h1  {color: #818080 !important}
+body {background-color:#d8d8d8 !important; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
+.btn-info {background-color:#4b9b95 !important;}
+
+.row {margin-right: 0px; margin-left: 0px}

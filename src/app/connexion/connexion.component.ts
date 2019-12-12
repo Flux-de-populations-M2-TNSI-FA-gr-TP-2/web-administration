@@ -10,8 +10,9 @@ import {Router} from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
 
+  error: boolean = false;
   constructor(private  router: Router) { }
-
+   
   ngOnInit() {
   }
 
