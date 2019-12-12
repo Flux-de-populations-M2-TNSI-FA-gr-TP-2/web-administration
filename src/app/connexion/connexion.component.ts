@@ -10,8 +10,7 @@ import {Router} from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
 
-  constructor(private  router: Router
-    , private httpClient: HttpClient) { }
+  constructor(private  router: Router) { }
 
   ngOnInit() {
   }
