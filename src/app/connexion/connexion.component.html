@@ -1,5 +1,6 @@
   <html>
   <div>
+    <form  formGroup="login">
       <div class="row">
           <div class="col-md-6 col-md-offset-3">
             <table class="table">
@@ -22,12 +23,14 @@
                             name="email"
                             class="form-control text-center"
                             autofocus="autofocus"
-                            placeholder="Email">
+                            formControlName="Email"
+                            placeholder="Email" >
                       <input type="password"
                             id="password"
+                             formControlName="Password"
                             name="password"
                             class="form-control text-center"
-                            placeholder="Password">      
+                            placeholder="Password" >
                   </div>
                   </th>
                 </tr>
@@ -40,16 +43,18 @@
                                     name="login-submit"
                                     id="login-submit"
                                     class="form-control btn btn-info"
+                                    (click)="onSubmit()"
                                     value="Connextion">
                           </div>
                       </div>
                   </div>
                   </th>
-                  
+
                 </tr>
               </tbody>
             </table>
           </div>
       </div>
+    </form>
   </div>
   </html>

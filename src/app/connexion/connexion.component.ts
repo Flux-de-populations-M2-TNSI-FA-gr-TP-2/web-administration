@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -11,18 +11,25 @@ import {Router} from '@angular/router';
 export class ConnexionComponent implements OnInit {
 
   error: boolean = false;
-  constructor(private  router: Router) { }
-   
+  email_value: String = '';
+  password_value: String = '';
+  logForm: FormGroup;
+
+  constructor(private  router: Router,
+              private formBuilder: FormBuilder) { }
+
   ngOnInit() {
+    this.logForm = this.formBuilder.group({
+      Email: ['', Validators.required],
+      firstNpassword: ['', Validators.required]
+    });
   }
 
 
-  onSubmit(form: NgForm) {
-    /*this.afficher_spinner = true;
-    const email = form.value['email'];
-    const password = form.value['password'];
-    const url = this.constance.dns.concat('/api/connexion?email=').concat(email).concat('&password=').concat(password);
-    this.connexionToServer(url);*/
+
+  onSubmit() {
+    console.log(this.email_value);
+    console.log(this.password_value);
   }
 
 }
