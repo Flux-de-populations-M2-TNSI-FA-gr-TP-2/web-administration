@@ -19,6 +19,7 @@ import {ConstService} from './service/Const.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './service/auth.service';
 import {AuthGuardService} from './service/auth.guard.service';
+import { ListeutilisateursComponent } from './listeutilisateurs/listeutilisateurs.component';
 
 
 const appRoutes: Routes = [
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     EtablissementsComponent,
     EvenementsComponent,
     UtilisateursComponent,
-    MonitoringComponent
+    MonitoringComponent,
+    ListeutilisateursComponent
   ],
   imports: [
     BrowserModule,

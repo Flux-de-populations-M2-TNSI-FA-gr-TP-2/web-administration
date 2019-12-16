@@ -10,7 +10,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class EvenementsComponent implements OnInit {
 
-  constructor(private constance: ConstService 
+  constructor(private constance: ConstService
               , private httpClient: HttpClient
               , private authService: AuthService) { }
 
@@ -21,14 +21,15 @@ export class EvenementsComponent implements OnInit {
    getListEvent() {
      console.log(this.authService.sessions.access_token);
     const url = 'https://fluxtnsi.ddns.net/api/event';
-   
+
     const httpOptions = {
       headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Bearer ' + this.authService.sessions.access_token  
+      'Authorization': 'Bearer ' + this.authService.sessions.access_token
       })
     };
-this.httpClient
+
+    this.httpClient
       .get(url,httpOptions)
       .subscribe(
         (response) => {
@@ -39,7 +40,7 @@ this.httpClient
            console.log(error);
         }
       );
-  }
+    }
 
 }
 

@@ -19,9 +19,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td scope="row">John</td>
-        <td scope="row">Doe</td>
+
+      <tr *ngFor="let utilisateur of this.utilisateurslists;" >
+        <td scope="row">{{utilisateur.firstname}}</td>
+        <td scope="row">{{utilisateur.lastname}}</td>
         <td scope="row">4564588</td>
         <td scope="row">
           <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -29,26 +30,16 @@
           <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
       </tr>
-      <tr>
-        <td scope="row">John</td>
-        <td scope="row">Doe</td>
-        <td scope="row">4564588</td>
-        <td scope="row">
-          <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
-          <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></a>
-          <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-        </td>
-      </tr>
-      <tr>
-        <td scope="row">John</td>
-        <td scope="row">Doe</td>
-        <td scope="row">4564588</td>
-        <td scope="row">
-          <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
-          <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></a>
-          <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-        </td>
-      </tr>
+
+          <!--app-listeutilisateurs--  *ngFor="let utilisateur of this.utilisateurslists; let i = index"
+                                 [index] = "i"
+                                 [firstname] = "utilisateur.firstname"
+                                 [lastname] = "utilisateur.lastname"
+                                 [email] = "utilisateur.email"
+                                 [birthday] = "utilisateur.birthdate"
+                                 [role] = "utilisateur.role">
+          </app-listeutilisateurs-->
+
       </tbody>
     </table>
 
