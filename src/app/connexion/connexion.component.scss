@@ -1,5 +1,9 @@
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
-{
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td {
   padding-top: 5%;
   border-top: 1px solid #d8d8d8 !important;
 }
