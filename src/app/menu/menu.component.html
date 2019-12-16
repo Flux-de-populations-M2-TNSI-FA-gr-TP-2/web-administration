@@ -1,5 +1,6 @@
-<header>
+<mat-spinner *ngIf="this.constance.progressbar_deconnexion"  class="progressbar"></mat-spinner>
 
+<header  *ngIf="!this.constance.progressbar_deconnexion">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">

@@ -7,4 +7,7 @@ export  class ConstService {
   active_monitoring:string = 'active';
   active_utilisateur:string = '';
   active_etablissement:string = '';
+
+  //la barre de progression de la déconnexion
+  progressbar_deconnexion: boolean = false;
 }

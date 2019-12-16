@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ConstService} from '../service/Const.service';
 
 @Component({
   selector: 'app-etablissements',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EtablissementsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private constance: ConstService) { }
 
   ngOnInit() {
   }
