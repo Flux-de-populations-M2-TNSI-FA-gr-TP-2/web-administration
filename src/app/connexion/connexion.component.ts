@@ -31,7 +31,7 @@ export class ConnexionComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.progressbar_status = true;
-    const url = 'https://fluxtnsi.ddns.net/api/user/login';//'http://localhost/Apifcm/push_boss.php';//this.constance.dns.concat('/user/login');
+    const url = 'https://fluxtnsi.ddns.net/api/user/login';
     this.httpClient
       .post(url, {'email': form.value['email'],'password': form.value['password']})
       .subscribe(

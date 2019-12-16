@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
 import {ConstService} from '../service/Const.service';
+import {NgForm} from '@angular/forms';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-menu',
@@ -10,13 +13,17 @@ import {ConstService} from '../service/Const.service';
 })
 export class MenuComponent implements OnInit {
 
-
+  DeconnectResponse: any;
+  succes: any;
 
   constructor(private  router: Router
               , private constance: ConstService
+              , private httpClient: HttpClient
+              , public snackBar: MatSnackBar
               , private authService: AuthService) { }
 
   ngOnInit() {
+
   }
 
   RootEvenements() {
@@ -45,8 +52,10 @@ export class MenuComponent implements OnInit {
   }
 
   Disconnect() {
-    this.authService.signOut();
-    this.router.navigate(['connexion']);
+    this.constance.progressbar_deconnexion = true;
+    this.DisconnectWebService();
+    /*this.authService.signOut();*/
+    /*this.router.navigate(['connexion']);*/
   }
 
   ActiveMenuItem(what: String) {
@@ -65,4 +74,42 @@ export class MenuComponent implements OnInit {
       this.constance.active_utilisateur = 'active';
     }
   }
+
+
+  DisconnectWebService() {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+
+    const url = 'https://fluxtnsi.ddns.net/api/user/logout';
+    this.httpClient
+      .get(url, httpOptions)
+      .subscribe(
+        (response) => {
+          //console.log(response);
+          this.DeconnectResponse = response;
+          //console.log(this.DeconnectResponse.success);
+          if (this.DeconnectResponse.success) {
+            this.openSnackBar("Votre déconnexion s'est éffectuer avec succès !!", "succes");
+            this.router.navigate(['connexion']);
+          }
+          //console.log(response);
+          return response;
+        },
+        (error) => {
+        }
+      );
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
 }

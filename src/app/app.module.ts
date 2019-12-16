@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule} from '@angular/material';
 import { MenuComponent } from './menu/menu.component';
 import { EtablissementsComponent } from './etablissements/etablissements.component';
 import { EvenementsComponent } from './evenements/evenements.component';
@@ -52,6 +52,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatIconModule,
     MatProgressSpinnerModule,
     FormsModule,
