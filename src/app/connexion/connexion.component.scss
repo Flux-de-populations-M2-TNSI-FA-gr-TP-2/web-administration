@@ -1,3 +1,17 @@
-body {padding-top: 70px;}
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td { padding: 5%; border-top: 1px solid #d8d8d8 !important;}
-.table > thead > tr > th { vertical-align: bottom; border-bottom: 2px solid #d8d8d8 !important;}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
+{
+  padding-top: 5%;
+  border-top: 1px solid #d8d8d8 !important;
+}
+
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #d8d8d8 !important;
+}
+
+.progressbar {
+  margin-left:auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: 10%;
+}
