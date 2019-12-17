@@ -10,6 +10,8 @@ import { AuthService } from '../service/auth.service';
 })
 export class EvenementsComponent implements OnInit {
 
+  ourObject : any;
+  evenements : any;
   constructor(private constance: ConstService
               , private httpClient: HttpClient
               , private authService: AuthService) { }
@@ -33,7 +35,9 @@ export class EvenementsComponent implements OnInit {
       .get(url,httpOptions)
       .subscribe(
         (response) => {
-            console.log(response);
+          this.ourObject = response;
+          this.evenements = this.ourObject.data;
+          console.log(this.evenements);
           return response;
         },
         (error) => {
