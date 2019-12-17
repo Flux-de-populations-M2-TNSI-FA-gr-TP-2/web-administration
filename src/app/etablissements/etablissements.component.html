@@ -7,51 +7,18 @@
   <ol class="breadcrumb">
     <li class="#">Etablissements</li>
   </ol>
-  <h2><span class="label label-default">AB-2</span></h2><hr>
 
-  <div class="row">
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-          AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail btn btn-lg ">
-        AB2
-      </a>
-    </div>
+  <div *ngFor="let batiment of this.batimentlist;">
+      <h2 ><span class="label label-default">{{batiment.name}}</span></h2><hr>
 
-  </div>
+      <div  class="row">
+          <div *ngFor="let salles of batiment.rooms" class="col-xs-6 col-md-3">
+              <a class="thumbnail btn btn-lg ">
+                {{salles.name}}
+              </a>
+          </div>
+      </div>
+  <div>
 
 </div>
 
