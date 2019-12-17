@@ -90,17 +90,18 @@ export class MenuComponent implements OnInit {
       .get(url, httpOptions)
       .subscribe(
         (response) => {
-          //console.log(response);
           this.DeconnectResponse = response;
-          //console.log(this.DeconnectResponse.success);
           if (this.DeconnectResponse.success) {
+            this.authService.signOut();
             this.openSnackBar("Votre déconnexion s'est éffectuer avec succès !!", "succes");
+            this.constance.progressbar_deconnexion = false;
             this.router.navigate(['connexion']);
           }
-          //console.log(response);
           return response;
         },
         (error) => {
+          this.openSnackBar("Une erreur réseau vient de se produire !!", "erreur");
+          this.constance.progressbar_deconnexion = false;
         }
       );
   }
