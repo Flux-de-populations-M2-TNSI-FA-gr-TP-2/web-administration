@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ConstService} from '../service/Const.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../service/auth.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-etablissements',
@@ -12,6 +13,7 @@ export class EtablissementsComponent implements OnInit {
 
   ourobject: any;
   batimentlist: any;
+  progressbar_display_establishment: boolean = false;
 
   constructor(private constance: ConstService
     , private httpClient: HttpClient
@@ -25,6 +27,7 @@ export class EtablissementsComponent implements OnInit {
   getListebatiment() {
 
     const url = 'https://fluxtnsi.ddns.net/api/location';
+    this.progressbar_display_establishment = true;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -37,6 +40,7 @@ export class EtablissementsComponent implements OnInit {
       .get(url, httpOptions)
       .subscribe(
         (response) => {
+          this.progressbar_display_establishment = false;
           this.ourobject = response;
           this.batimentlist = this.ourobject.data;
           //console.log(this.utilisateurslists);
@@ -47,6 +51,10 @@ export class EtablissementsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  addRoom(form: NgForm) {
+
   }
 
 }
