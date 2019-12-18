@@ -12,16 +12,49 @@ export class EvenementsComponent implements OnInit {
 
   ourObject : any;
   evenements : any;
+  //var for evenement
+
+  evenementName = "";
+  evenementStart = "";
+  evenementEnd = "";
+  evenementStatus = "";
+  evenementGroupeName = "";
+
+  //name for datePicker
+  datepickerStart = "Date de debut";
+  datepickerEnd = "Date de fin";
+
   constructor(private constance: ConstService
               , private httpClient: HttpClient
               , private authService: AuthService) { }
 
   ngOnInit() {
     this.getListEvent();
+    this.constance.value_datePicker=''
+  }
+
+  getEvenementById(index){
+    let evenement = this.evenements[index]
+    let i = 0;
+
+    this.evenementName = evenement.name
+    this.evenementEnd = evenement.end
+    this.evenementStart = evenement.start
+    this.evenementStatus = evenement.status
+    evenement.event_groups.forEach(element => {
+      if (i === 0) {
+        this.evenementGroupeName = element.name
+      } else {
+        this.evenementGroupeName += ", " + element.name
+      }
+    });
+    console.log(index);
+    console.log(this.evenements)
+   
   }
 
    getListEvent() {
-     console.log(this.authService.sessions.access_token);
+    console.log(this.authService.sessions.access_token);
     const url = 'https://fluxtnsi.ddns.net/api/event';
 
     const httpOptions = {

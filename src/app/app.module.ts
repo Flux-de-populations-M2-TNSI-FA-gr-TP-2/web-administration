@@ -20,6 +20,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './service/auth.service';
 import {AuthGuardService} from './service/auth.guard.service';
 import { ListeutilisateursComponent } from './listeutilisateurs/listeutilisateurs.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     EvenementsComponent,
     UtilisateursComponent,
     MonitoringComponent,
-    ListeutilisateursComponent
+    ListeutilisateursComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatProgressBarModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     AuthService,

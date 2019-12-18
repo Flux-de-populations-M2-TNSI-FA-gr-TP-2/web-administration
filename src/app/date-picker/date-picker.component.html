@@ -1,0 +1,12 @@
+
+<div class="form-group">
+  <label class="control-label col-sm-2">{{datepicker_libelle}}</label>
+  <div class="col-sm-10 " data-provide="datepicker">
+    <div class="input-group date">
+      <input type="text" class="form-control" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker">
+      <span class="input-group-addon">
+        <button class="glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
+      </span>
+    </div>
+  </div>
+</div>
