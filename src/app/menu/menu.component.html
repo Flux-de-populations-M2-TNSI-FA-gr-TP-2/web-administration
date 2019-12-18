@@ -1,6 +1,6 @@
 <mat-spinner *ngIf="this.constance.progressbar_deconnexion"  class="progressbar"></mat-spinner>
 
-<header  *ngIf="!this.constance.progressbar_deconnexion">
+<div  *ngIf="!this.constance.progressbar_deconnexion">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -18,19 +18,19 @@
           <li class="{{this.constance.active_evenement}} cursor_du_boss" (click)="RootEvenements()"><a>Evenements</a></li>
           <li class="{{this.constance.active_utilisateur}} cursor_du_boss" (click)="RootToUtilisateurs()"><a>Utilisateurs</a></li>
           <li class="{{this.constance.active_etablissement}} cursor_du_boss" (click)="RootToEtablissements()"><a>Etablissements</a></li>
-
         </ul>
         <ul class="nav navbar-nav navbar-right">
 
-          <button type="button" class="btn btn-default navbar-btn"  (click)="Disconnect()"><mat-icon>power_settings_new</mat-icon></button>
+          <button type="button" style="margin-right: 8px;" class="btn btn-danger navbar-btn"  (click)="Disconnect()"><i class="fa fa-1x fa-power-off"></i> Deconnexion</button>
 
         </ul>
       </div><!--/.nav-collapse -->
 
     </div><!--/.container-fluid -->
+
   </nav>
 
-</header>
+</div>
 
 
 
