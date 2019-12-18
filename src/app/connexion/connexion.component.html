@@ -1,56 +1,96 @@
 <mat-spinner *ngIf="progressbar_status"  class="progressbar"></mat-spinner>
-  <div *ngIf="!progressbar_status" style="width: 1330px;">
-    <form (ngSubmit)="onSubmit(f)"   #f="ngForm">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <table class="table">
-            <thead>
-            <tr>
-              <th id="welcome" scope="col"><h1 class="text-center">BIENVENUE</h1></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th id="login-parameter" scope="row">
-                <div>
-                  <div *ngIf="error" class="alert alert-danger">
-                    Votre Mot de Passe ou votre email est invalide
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input type="text"
-                         id="email"
-                         name="email"
-                         class="form-control text-center"
-                         autofocus="autofocus"
-                         placeholder="Email" ngModel>
-                  <input type="password"
-                         id="password"
-                         name="password"
-                         class="form-control text-center"
-                         placeholder="Password" ngModel>
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <th id="login-bouton" scope="row">
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                      <input type="submit"
-                             name="login-submit"
-                             id="login-submit"
-                             class="form-control btn btn-info"
-                             value="Connexion">
-                    </div>
-                  </div>
-                </div>
-              </th>
+  <div class="container-fluid" *ngIf="!progressbar_status">
+<!--    <form (ngSubmit)="onSubmit(f)"   #f="ngForm">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-6 col-md-offset-3">-->
+<!--          <table class="table">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th id="welcome" scope="col"><h1 class="text-center">BIENVENUE</h1></th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--              <th id="login-parameter" scope="row">-->
+<!--                <div>-->
+<!--                  <div *ngIf="error" class="alert alert-danger">-->
+<!--                    Votre Mot de Passe ou votre email est invalide-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                  <input type="text"-->
+<!--                         id="email"-->
+<!--                         name="email"-->
+<!--                         class="form-control text-center"-->
+<!--                         autofocus="autofocus"-->
+<!--                         placeholder="Email" ngModel>-->
+<!--                  <input type="password"-->
+<!--                         id="password"-->
+<!--                         name="password"-->
+<!--                         class="form-control text-center"-->
+<!--                         placeholder="Password" ngModel>-->
+<!--                </div>-->
+<!--              </th>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th id="login-bouton" scope="row">-->
+<!--                <div class="form-group">-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-sm-6 col-sm-offset-3">-->
+<!--                      <input type="submit"-->
+<!--                             name="login-submit"-->
+<!--                             id="login-submit"-->
+<!--                             class="form-control btn btn-info"-->
+<!--                             value="Connexion">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </th>-->
 
-            </tr>
-            </tbody>
-          </table>
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+
+
+  <div id="LoginForm">
+<!--  <div class="container">-->
+    <div class="login-form">
+      <div class="main-div">
+        <div class="panel">
+          <h2>Bienvenue, connectez-vous!</h2>
+          <p>Please enter your email and password</p>
         </div>
+        <form id="Login" (ngSubmit)="onSubmit(f)"   #f="ngForm">
+          <div class="form-group">
+            <div *ngIf="error" class="alert alert-danger">
+              Votre Mot de Passe ou votre email est invalide.
+            </div>
+          </div>
+          <div class="form-group">
+
+
+            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email Address" ngModel>
+
+          </div>
+
+          <div class="form-group">
+
+            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" ngModel>
+
+          </div>
+  <!--        <div class="forgot">-->
+  <!--          <a href="reset.html">Forgot password?</a>-->
+  <!--        </div>-->
+          <button type="submit" class="btn btn-info">Connexion</button>
+
+        </form>
       </div>
-    </form>
+    </div>
+<!--  </div>-->
+
+
+  </div>
   </div>
