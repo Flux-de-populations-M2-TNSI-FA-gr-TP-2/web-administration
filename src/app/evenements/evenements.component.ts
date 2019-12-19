@@ -24,6 +24,8 @@ export class EvenementsComponent implements OnInit {
   datepickerStart = "Date de debut";
   datepickerEnd = "Date de fin";
 
+  progressbar_display_evenement : boolean = true;
+
   constructor(private constance: ConstService
               , private httpClient: HttpClient
               , private authService: AuthService) { }
@@ -48,13 +50,11 @@ export class EvenementsComponent implements OnInit {
         this.evenementGroupeName += ", " + element.name
       }
     });
-    console.log(index);
-    console.log(this.evenements)
-   
+
   }
 
    getListEvent() {
-    console.log(this.authService.sessions.access_token);
+    //console.log(this.authService.sessions.access_token);
     const url = 'https://fluxtnsi.ddns.net/api/event';
 
     const httpOptions = {
@@ -70,7 +70,8 @@ export class EvenementsComponent implements OnInit {
         (response) => {
           this.ourObject = response;
           this.evenements = this.ourObject.data;
-          console.log(this.evenements);
+          this.progressbar_display_evenement = false;
+          //console.log(this.evenements);
           return response;
         },
         (error) => {

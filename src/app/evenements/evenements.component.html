@@ -5,8 +5,10 @@
     <li>Evenement</li>
   </ol>
 
+  <mat-progress-bar *ngIf="progressbar_display_evenement" mode="indeterminate"></mat-progress-bar>
+
    <div class="well well-lg">
-    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalAdd"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter</a>  
+    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalAdd"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter</a>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -49,11 +51,11 @@
                 <input type="text" name="evenement-name" value="{{evenementName}}" class="form-control"  placeholder="" >
               </div>
             </div>
-            
+
             <app-date-picker [datepicker_libelle]="datepickerStart"></app-date-picker>
-            
+
             <app-date-picker [datepicker_libelle]="datepickerEnd"></app-date-picker>
-            
+
             <div class="form-group">
               <label class="control-label col-sm-2" >Status actuel:</label>
               <div class="col-sm-10">

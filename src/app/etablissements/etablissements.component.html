@@ -8,8 +8,7 @@
     <li class="#">Etablissements</li>
   </ol>
 
-  <mat-progress-bar *ngIf="
-    " mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar *ngIf="progressbar_display_establishment" mode="indeterminate"></mat-progress-bar>
 
   <div *ngIf="!progressbar_display_establishment" >
   <div *ngFor="let batiment of this.batimentlist;" >
