@@ -16,6 +16,9 @@ export class UtilisateursComponent implements OnInit {
   progressbar_display_utilisateur: boolean = false;
   //datepicker libelle
   datepicker_birth="Date de naissance";
+   ourobject: any;
+   progressbar_display_utilisateur : boolean = true;
+
 
   constructor(private constance: ConstService
     , private httpClient: HttpClient
@@ -42,7 +45,7 @@ export class UtilisateursComponent implements OnInit {
         (response) => {
           this.ourobject = response;
           this.utilisateurslists = this.ourobject.data;
-          console.log(this.utilisateurslists);
+          this.progressbar_display_utilisateur = false;
           return response;
         },
         (error) => {
