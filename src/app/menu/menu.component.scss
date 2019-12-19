@@ -1,5 +1,6 @@
 .cursor_du_boss {
   cursor: pointer;
+ // color: white !important;;
 }
 .progressbar {
   margin-left:auto;
@@ -8,4 +9,37 @@
   margin-top: 10%;
 }
 
+.navbar-default {
+
+  background-color: #0081a1 !important;
+  border-color: #31b0d5 !important;
+  //font-weight: bold;
+  /* color: white; */
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: white !important;
+  background-color: transparent;
+  //font-weight: bold;
+}
+.navbar-brand{
+  color: white;
+  font-weight: 800;
+}
+.navbar-default .navbar-nav > .active > a{
+  color: #f5f5f5 !important;
+  font-weight: 600;
+  background-color: #0f596b !important;
+}
+
+.navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #f5f5f5 !important;
+  background-color: #0f596b !important;
+}
+.navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #f5f5f5 !important;
+  background-color: transparent;
+}
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }
 

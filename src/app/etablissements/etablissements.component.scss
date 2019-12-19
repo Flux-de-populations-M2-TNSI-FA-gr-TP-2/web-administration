@@ -1,3 +1,9 @@
+.hr_etabl {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 2px dotted #777;
+}
 .button-addroom{
   padding-top: 19px;
   text-align: right;
@@ -8,4 +14,27 @@
 .button-addroom>button{
   font-size: 16px;
   font-weight: bolder;
+}
+//css room
+.btn-sq-lg {
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.btn-sq {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 10px;
+}
+
+.btn-sq-sm {
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 10px;
+}
+
+.btn-sq-xs {
+  width: 25px !important;
+  height: 25px !important;
+  padding:2px;
 }

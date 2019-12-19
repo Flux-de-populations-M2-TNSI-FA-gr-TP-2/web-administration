@@ -31,7 +31,8 @@ $Web-Administration-theme: mat-light-theme($Web-Administration-primary, $Web-Adm
 
 
 body {
-  background-color:#d8d8d8 !important;
+  background-color: #eee !important;
+  //background-color:#d8d8d8 !important;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   //padding-top: 70px;
@@ -53,19 +54,10 @@ h1, .h1  {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: #31b0d5 !important;
+  background-color: #0081a1 !important;
   border-radius: 4px;
   color: white;
   font-weight: bold;
+  text-transform: uppercase;
 }
-.navbar-default {
-  background-color: #31b0d5 !important;
-  border-color: #31b0d5 !important;
-  //font-weight: bold;
-  /* color: white; */
-}
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-  color: white !important;
-  background-color: transparent;
-  font-weight: bold;
-}
+
