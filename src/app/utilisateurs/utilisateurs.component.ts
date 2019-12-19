@@ -18,7 +18,15 @@ export class UtilisateursComponent implements OnInit {
    ourobject: any;
    progressbar_display_utilisateur : boolean = true;
    display_create_user_block: string = 'none';
+  display_details_user_block: string = 'none';
   progressbar_create_user: boolean = false;
+
+  details_firstname:string = '';
+  details_lastname: string = '';
+  details_email: string = '';
+  details_password: string = '';
+  details_birthday: string = '';
+  details_role: string = '';
 
 
 
@@ -116,6 +124,20 @@ export class UtilisateursComponent implements OnInit {
 
   closeCreateUser() {
     this.display_create_user_block = 'none';
+  }
+
+  DetailsUser(index) {
+    this.display_details_user_block = 'block';
+    this.details_firstname = this.utilisateurslists[index].firstname;
+    this.details_lastname = this.utilisateurslists[index].lastname;
+    this.details_email = this.utilisateurslists[index].email;
+    this.details_password = this.utilisateurslists[index].password;
+    this.details_birthday = this.utilisateurslists[index].birthdate;
+    this.details_role  = this.utilisateurslists[index].role;
+  }
+
+  closeDetailsUser() {
+    this.display_details_user_block = 'none';
   }
 
 }

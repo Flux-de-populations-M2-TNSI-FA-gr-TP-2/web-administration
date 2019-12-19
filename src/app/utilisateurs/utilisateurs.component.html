@@ -29,7 +29,7 @@
         <td scope="row">{{utilisateur.lastname}}</td>
         <td scope="row">
 
-          <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+          <a  class="btn btn-info" (click)="DetailsUser(i)"><span class="glyphicon glyphicon-eye-open"></span></a>
           <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#modalUpdate"><span class="glyphicon glyphicon-edit"></span></a>
           <a href="#" class="btn btn-danger"  data-toggle="modal" data-target="#modalDelete"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
@@ -303,3 +303,81 @@
 
 </div>
 
+
+
+<!--Le block pour ajouter un utilisateur-->
+<div class="dialgo-block" [ngStyle]="{'display':''+display_details_user_block+''}">
+
+
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex="20%"></div>
+    <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+    </div>
+    <div class="item item-3" fxFlex="60%">
+      <br/><br/><br/>
+      <mat-card class="example-card">
+        <button mat-icon-button  (click)="closeDetailsUser()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+
+        <form class="form-horizontal">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Nom:</label>
+              <div class="col-sm-10">
+                <input type="text" name="lastname" class="form-control"  placeholder="" value="{{this.details_lastname}}" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Prenom:</label>
+              <div class="col-sm-10">
+                <input type="text" name="firstname" class="form-control"  value="{{this.details_firstname}}" placeholder="" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Email:</label>
+              <div class="col-sm-10">
+                <input type="text" name="email" class="form-control"  value="{{this.details_email}}" placeholder="" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Mot de passe:</label>
+              <div class="col-sm-10">
+                <input type="password" name="text" class="form-control"  placeholder="" value="{{this.details_password}}" disabled>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Date de Naissance:</label>
+              <div class="col-sm-10">
+                <input type="text" name="firstname" class="form-control" value="{{this.details_birthday}}" placeholder="" disabled>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Role:</label>
+              <div class="col-sm-10">
+                <input type="text" name="firstname" value="{{this.details_role}}" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+
+      </mat-card>
+
+
+
+
+
+    </div>
+  </div>
+</div>
