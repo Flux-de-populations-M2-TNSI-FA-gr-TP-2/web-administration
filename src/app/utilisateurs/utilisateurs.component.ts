@@ -14,6 +14,8 @@ export class UtilisateursComponent implements OnInit {
    utilisateurslists: any;
    ourobject:any;
   progressbar_display_utilisateur: boolean = false;
+  //datepicker libelle
+  datepicker_birth="Date de naissance";
 
   constructor(private constance: ConstService
     , private httpClient: HttpClient
@@ -93,6 +95,10 @@ export class UtilisateursComponent implements OnInit {
           this.error = true;*/
         }
       );
+  }
+  // get utilisateur by ID
+  getUserById(index) {
+
   }
 
 }
