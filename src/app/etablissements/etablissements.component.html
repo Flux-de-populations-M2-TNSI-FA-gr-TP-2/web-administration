@@ -3,7 +3,6 @@
 <br/><br/><br/><br/>
 <div  *ngIf="!this.constance.progressbar_deconnexion">
 <div class="container-fluid">
-
   <ol class="breadcrumb">
     <li class="#">Etablissements</li>
   </ol>
@@ -13,13 +12,13 @@
 
 
   <div *ngIf="!progressbar_display_establishment" >
-  <div *ngFor="let batiment of this.batimentlist;" >
+  <div *ngFor="let batiment of this.batimentlist;let i=index"  >
     <div class="row">
       <div class="col-sm-6">
         <h2><span class="label label-default">{{batiment.name}}</span></h2>
       </div>
       <div lass="col-sm-6" class="button-addroom">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAddRoom">Ajouter salle</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAddRoom" (click)="getEtablissementById(i)">Ajouter salle</button>
       </div>
     </div>
 
@@ -42,32 +41,30 @@
 </div>
 
     <!-- Modal -->
-    <div id="modalAddRoom" class="modal fade" role="dialog">
+    <!--div-- class="add_bossmodal" [ngStyle]="{'display':'' + addroom_display+''}">
       <div class="modal-dialog">
 
-        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Ajouter une nouvelle salle</h4>
           </div>
-          <form class="form-horizontal"  (ngSubmit)="addRoom(f)"   #f="ngForm">
+          <form class="form-horizontal"  (ngSubmit)="addRoom(frooms)"   #frooms="ngForm">
             <div class="modal-body">
 
               <div class="form-group">
                 <label class="control-label col-sm-2" >Nom:</label>
                 <div class="col-sm-10">
-                  <input type="text" name="name" class="form-control"  placeholder="" ngModel>
+                  <input type="text" name="name_room" class="form-control"  placeholder="" ngModel>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-2" >Etage:</label>
                 <div class="col-sm-10">
-                  <input type="text" name="floor" class="form-control"  placeholder="" ngModel>
+                  <input type="text" name="floor_room" class="form-control"  placeholder="" ngModel>
                 </div>
               </div>
               <div class="form-group">
-                <!--                <label class="control-label col-sm-2" >Email:</label>-->
                 <div class="col-sm-10">
                   <input type="hidden" name="location_id" class="form-control" value="1" placeholder="" ngModel>
                 </div>
@@ -76,7 +73,7 @@
             </div>
             <div class="modal-footer">
 
-              <button type="submit" class="btn btn-success" data-dismiss="modal">Enregistrer</button>
+              <button type="submit" class="btn btn-success" >Enregistrer</button>
             </div>
           </form>
 
@@ -84,7 +81,79 @@
         </div>
 
       </div>
+    </div-->
+
+
+  <!--Le block de la boite de dialogue Message Public-->
+  <div class="dialgo-block" [ngStyle]="{'display':''+addroom_display+''}">
+
+
+    <div class="container"
+         fxLayout
+         fxLayout.xs="column"
+         fxLayoutAlign="center"
+         fxLayoutGap="10px"
+         fxLayoutGap.xs="0">
+      <div class="item item-1" fxFlex="20%"></div>
+      <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+      </div>
+      <div class="item item-3" fxFlex="60%">
+        <br/><br/><br/>
+        <mat-card class="example-card">
+
+          <button mat-icon-button  >
+            <mat-icon aria-label="Example icon-button with a heart icon"  (click)="OnClose()"  >close</mat-icon>
+          </button>
+
+          <mat-card-content>
+            <div class="connexion-form">
+              <mat-divider  ></mat-divider>
+              <br/>
+
+              <mat-progress-bar mode="indeterminate"  *ngIf="addroom_progressbar"></mat-progress-bar>
+
+              <form *ngIf="!addroom_progressbar" class="form-horizontal"  (ngSubmit)="addRoom(frooms)"   #frooms="ngForm">
+                <div class="modal-body">
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" >Nom:</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="name_room" class="form-control"  placeholder="" ngModel>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" >Etage:</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="floor_room" class="form-control"  placeholder="" ngModel>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="hidden" name="location_id" class="form-control" value="1" placeholder="" ngModel>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+
+                  <button type="submit" class="btn btn-success" >Enregistrer</button>
+                </div>
+              </form>
+
+
+              <br/>
+              <mat-divider></mat-divider>
+
+
+            </div>
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
     </div>
+
+  </div>
 
 
 

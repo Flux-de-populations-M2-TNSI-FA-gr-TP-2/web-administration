@@ -35,8 +35,8 @@ export class EvenementsComponent implements OnInit {
     this.constance.value_datePicker=''
   }
 
-  getEvenementById(index){
-    let evenement = this.evenements[index]
+  getEvenementById(index) {
+    let evenement = this.evenements[index];
     let i = 0;
 
     this.evenementName = evenement.name

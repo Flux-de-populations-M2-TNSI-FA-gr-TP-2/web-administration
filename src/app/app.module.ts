@@ -8,7 +8,14 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatIconModule, MatProgressBarModule, MatProgressSpinnerModule, MatSnackBarModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule,
+  MatDividerModule, MatFormFieldModule,
+  MatIconModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatSnackBarModule
+} from '@angular/material';
 import { MenuComponent } from './menu/menu.component';
 import { EtablissementsComponent } from './etablissements/etablissements.component';
 import { EvenementsComponent } from './evenements/evenements.component';
@@ -22,6 +29,7 @@ import {AuthGuardService} from './service/auth.guard.service';
 import { ListeutilisateursComponent } from './listeutilisateurs/listeutilisateurs.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 const appRoutes: Routes = [
@@ -60,6 +68,10 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatProgressBarModule,
     FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FlexLayoutModule,
+    MatDividerModule,
     HttpClientModule,
     NgbModule
   ],
