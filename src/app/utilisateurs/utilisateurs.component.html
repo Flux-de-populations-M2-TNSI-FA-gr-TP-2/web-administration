@@ -203,22 +203,8 @@
                 <input type="password" name="password" class="form-control"  placeholder="" ngModel>
               </div>
             </div>
-<<<<<<< HEAD
-            <div class="form-group">
-              <label class="control-label col-sm-2">Date de naissance:</label>
-              <div class="col-sm-10 " data-provide="datepicker">
-                <div class="input-group date">
-                  <input type="text" name="birthdate" class="form-control" ngModel>
-                  <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                </div>
+            <app-date-picker [datepicker_libelle]="datepicker_birth"></app-date-picker>
 
-              </div>
-            </div>
-=======
-            <app-date-picker></app-date-picker>
->>>>>>> feat(evenement) info de l'evenement
             <div class="form-group">
               <label class="control-label col-sm-2" >Role:</label>
               <div class="col-sm-10">
