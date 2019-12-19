@@ -3,6 +3,7 @@ import {ConstService} from '../service/Const.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../service/auth.service';
 import {NgForm} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-etablissements',
@@ -17,10 +18,27 @@ export class EtablissementsComponent implements OnInit {
   batiment: any;
   index_room: any;
   addroom_display: string = 'none';
+  display_global_block: string = 'none';
   addroom_progressbar: boolean = false;
+
+  room_name: string = '';
+  room_floor: string = '';
+  room_establissement: string = '';
+  boolean_room_details: boolean = false;
+  boolean_menu_display: boolean = true;
+  room_id : number;
+
+  icon_close : string = 'close';
+  boolean_close: boolean = true;
+  suppression_salle: boolean = false;
+  progressbar_delete_room: boolean = false;
+
+  item_batiment : number;
+  item_room : number;
 
 
   constructor(private constance: ConstService
+    , public snackBar: MatSnackBar
     , private httpClient: HttpClient
     , private authService: AuthService) { }
 
@@ -98,8 +116,95 @@ export class EtablissementsComponent implements OnInit {
      //console.log(this.batiment);
   }
 
+  getSallesById( index_batiment, index_room) {
+    /*console.log(index_batiment);
+    console.log(index_room);*/
+    this.item_batiment = index_batiment;
+    this.item_room = index_room;
+    this.display_global_block = 'block';
+    this.room_name = this.batimentlist[index_batiment].rooms[index_room].name;
+    this.room_floor = this.batimentlist[index_batiment].rooms[index_room].floor;
+    this.room_establissement = this.batimentlist[index_batiment].name;
+    this.room_id = this.batimentlist[index_batiment].rooms[index_room].id;
+
+  }
+
   OnClose() {
     this.addroom_display = 'none';
+  }
+
+  OnClose_globale_block() {
+    //si le block à le bouton close
+    if (this.boolean_close) {
+      this.display_global_block = 'none';
+    }
+    //si le block à le bouton back
+    else {
+      this.icon_close = 'close';
+      this.boolean_menu_display = true;
+      this.boolean_room_details = false;
+      this.boolean_close = true;
+      this.suppression_salle = false;
+    }
+  }
+
+  display_details() {
+    this.boolean_menu_display = false;
+    this.boolean_room_details = true;
+    this.icon_close = 'arrow_back';
+    this.boolean_close = false;
+  }
+
+  onsupprimer_salle() {
+    this.boolean_menu_display = false;
+    this.icon_close = 'arrow_back';
+    this.boolean_close = false;
+    this.suppression_salle = true;
+    this.progressbar_delete_room = false;
+  }
+
+  cancel_delete_room() {
+    this.icon_close = 'close';
+    this.boolean_menu_display = true;
+    this.boolean_room_details = false;
+    this.boolean_close = true;
+    this.suppression_salle = false;
+  }
+
+  delete_room() {
+    this.progressbar_delete_room = true;
+    const url = 'https://fluxtnsi.ddns.net/api/room/' + this.room_id;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+
+    /*this.progressbar_delete_room = false;
+    this.display_global_block = 'none';
+    console.log(this.batimentlist[this.item_batiment]);
+    this.batimentlist[this.item_batiment].rooms.splice(this.room_id, 1);*/
+
+    /*this.batimentlist[this.item_batiment].rooms.splice(this.item_room,1);
+    this.progressbar_delete_room = false;*/
+    this.httpClient
+      .delete(url, httpOptions)
+      .subscribe(
+        (response) => {
+          this.progressbar_delete_room = false;
+          this.display_global_block = 'none';
+          this.batimentlist[this.item_batiment].rooms.splice(this.item_room,1);
+          this.cancel_delete_room();
+          return response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+    //console.log(this.batimentlist[this.item_batiment].rooms[this.item_room]);
   }
 
 }

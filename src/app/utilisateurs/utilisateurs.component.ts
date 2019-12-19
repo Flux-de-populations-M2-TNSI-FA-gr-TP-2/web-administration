@@ -12,8 +12,7 @@ import {NgForm} from '@angular/forms';
 export class UtilisateursComponent implements OnInit {
 
    utilisateurslists: any;
-   ourobject:any;
-  progressbar_display_utilisateur: boolean = false;
+  //progressbar_display_utilisateur: boolean = false;
   //datepicker libelle
   datepicker_birth="Date de naissance";
    ourobject: any;
