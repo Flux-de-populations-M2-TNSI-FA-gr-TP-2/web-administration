@@ -35,6 +35,13 @@ export class EtablissementsComponent implements OnInit {
 
   item_batiment : number;
   item_room : number;
+  room_update: boolean = false;
+
+
+  room_name_update_value : string;
+  room_floor_update_value : string;
+
+  progressbar_update_room: boolean = false;
 
 
   constructor(private constance: ConstService
@@ -124,6 +131,8 @@ export class EtablissementsComponent implements OnInit {
     this.display_global_block = 'block';
     this.room_name = this.batimentlist[index_batiment].rooms[index_room].name;
     this.room_floor = this.batimentlist[index_batiment].rooms[index_room].floor;
+    this.room_name_update_value = this.batimentlist[index_batiment].rooms[index_room].name;
+    this.room_floor_update_value = this.batimentlist[index_batiment].rooms[index_room].floor;
     this.room_establissement = this.batimentlist[index_batiment].name;
     this.room_id = this.batimentlist[index_batiment].rooms[index_room].id;
 
@@ -145,6 +154,7 @@ export class EtablissementsComponent implements OnInit {
       this.boolean_room_details = false;
       this.boolean_close = true;
       this.suppression_salle = false;
+      this.room_update = false;
     }
   }
 
@@ -169,6 +179,7 @@ export class EtablissementsComponent implements OnInit {
     this.boolean_room_details = false;
     this.boolean_close = true;
     this.suppression_salle = false;
+    this.room_update = false;
   }
 
   delete_room() {
@@ -182,13 +193,7 @@ export class EtablissementsComponent implements OnInit {
       })
     };
 
-    /*this.progressbar_delete_room = false;
-    this.display_global_block = 'none';
-    console.log(this.batimentlist[this.item_batiment]);
-    this.batimentlist[this.item_batiment].rooms.splice(this.room_id, 1);*/
 
-    /*this.batimentlist[this.item_batiment].rooms.splice(this.item_room,1);
-    this.progressbar_delete_room = false;*/
     this.httpClient
       .delete(url, httpOptions)
       .subscribe(
@@ -203,8 +208,54 @@ export class EtablissementsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
 
-    //console.log(this.batimentlist[this.item_batiment].rooms[this.item_room]);
+  Update_salle() {
+    this.boolean_menu_display = false;
+    this.icon_close = 'arrow_back';
+    this.boolean_close = false;
+    this.suppression_salle = false;
+    this.progressbar_delete_room = false;
+    this.boolean_room_details = false;
+    this.room_update = true;
+  }
+
+  Submit_Update_salle() {
+      console.log("N° : "+this.room_floor_update_value);
+      console.log("Nom : "+this.room_name_update_value);
+      this.progressbar_update_room = true;
+      this.room_update = false;
+
+    const url = 'https://fluxtnsi.ddns.net/api/room/' + this.room_id;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+
+
+    this.httpClient
+      .put(url, { 'name': this.room_name_update_value , 'floor': this.room_floor_update_value,'location_id': this.batimentlist[this.item_batiment].id}, httpOptions)
+      .subscribe(
+        (response) => {
+          /*this.progressbar_delete_room = false;
+          this.display_global_block = 'none';
+          this.batimentlist[this.item_batiment].rooms.splice(this.item_room,1);*/
+          this.progressbar_update_room = false;
+          this.batimentlist[this.item_batiment].rooms[this.item_room].name = this.room_name_update_value;
+          this.batimentlist[this.item_batiment].rooms[this.item_room].floor = this.room_floor_update_value;
+          this.display_global_block = 'none';
+          this.cancel_delete_room();
+          return response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+
   }
 
 }

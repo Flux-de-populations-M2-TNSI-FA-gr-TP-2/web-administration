@@ -96,8 +96,6 @@
                   <button type="submit" class="btn btn-success" >Enregistrer</button>
                 </div>
               </form>
-
-
               <br/>
               <mat-divider></mat-divider>
 
@@ -152,6 +150,11 @@
                 <mat-card-header color="primary" class="details-block cursor_du_boss" (click)="onsupprimer_salle()">
                   <mat-card-title color="primary" class="title-size">Supprimer</mat-card-title>
                 </mat-card-header>
+                <mat-divider></mat-divider>
+                <br/>
+                <mat-card-header color="primary" class="details-block cursor_du_boss" (click)="Update_salle()" >
+                  <mat-card-title color="primary" class="title-size">Modifier</mat-card-title>
+                </mat-card-header>
 
                 <mat-divider></mat-divider>
               </div>
@@ -184,6 +187,33 @@
               <button mat-button (click)="cancel_delete_room()">Non</button>
             </div>
           </div>
+
+          <!--  Modal de la modification d'une salle -->
+          <mat-progress-bar *ngIf="progressbar_update_room"  mode="indeterminate"></mat-progress-bar>
+          <form   *ngIf="room_update">
+
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Nom:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name_room_update" class="form-control"  placeholder="" value="{{room_name_update_value}}"   [(ngModel)]="room_name_update_value">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Etage:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="floor_room_update" class="form-control"  placeholder=""  value="{{room_floor_update_value}}" [(ngModel)]="room_floor_update_value">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <br/><br/>
+              <button type="button" class="btn btn-success"  (click)="Submit_Update_salle()" >Modifier</button>
+            </div>
+          </form>
 
 
         </mat-card>
