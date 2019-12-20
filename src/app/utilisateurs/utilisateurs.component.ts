@@ -30,6 +30,15 @@ export class UtilisateursComponent implements OnInit {
   display_delete_user_block: string = 'none';
   delete_user: boolean = false;
   user_index: number;
+  display_update_user_block: string = 'none';
+
+  update_lastname: string = '';
+  update_firstname: string = '';
+  update_email: string = '';
+  update_password: string = '';
+  update_birthday: any;
+  update_role: string = '';
+  update_user_progressbar : boolean = false;
 
 
 
@@ -57,7 +66,6 @@ export class UtilisateursComponent implements OnInit {
       .subscribe(
         (response) => {
           this.ourobject = response;
-          console.log(this.ourobject);
           this.utilisateurslists = this.ourobject.data;
           this.progressbar_display_utilisateur = false;
           return response;
@@ -68,9 +76,7 @@ export class UtilisateursComponent implements OnInit {
       );
   }
 
-  onUpdate(form: NgForm) {
 
-  }
 
   onaddUser(form: NgForm) {
     const url = 'https://fluxtnsi.ddns.net/api/user/register';
@@ -81,14 +87,6 @@ export class UtilisateursComponent implements OnInit {
       })
     };
 
-    //console.log(form.value['birdthday_create'].day + "-" + form.value['birdthday_create'].month + "-" + form.value['birdthday_create'].year);
-
-    /*const lastname = form.value['lastname_create'];
-    const  firstname = form.value['firstname_create'];
-    const email = form.value['email_create'];
-    const birthday = form.value['birthdate_create'];
-    const role = form.value['role_create'];
-    const password = form.value['password_create'];*/
 
     this.progressbar_create_user = true;
     this.httpClient
@@ -116,15 +114,27 @@ export class UtilisateursComponent implements OnInit {
         }
       );
   }
-  // get utilisateur by ID
-  getUserById(index) {
-
-  }
 
   modalAddUser() {
     this.display_create_user_block = 'block';
   }
 
+  modalUpdateUser(index) {
+    this.display_update_user_block = 'block';
+    this.update_firstname = this.utilisateurslists[index].firstname;
+    this.update_lastname = this.utilisateurslists[index].lastname;
+    this.update_email = this.utilisateurslists[index].email;
+    this.update_password = this.utilisateurslists[index].password;
+    const date_user =  this.utilisateurslists[index].birthdate;
+
+    this.update_birthday = date_user;
+    this.update_role  = this.utilisateurslists[index].role;
+    this.user_index = index;
+  }
+
+  closeUpdateUser() {
+    this.display_update_user_block = 'none';
+  }
   closeCreateUser() {
     this.display_create_user_block = 'none';
   }
@@ -182,4 +192,39 @@ export class UtilisateursComponent implements OnInit {
 
   }
 
+
+  UpdateSubmit() {
+    this.update_user_progressbar = true;
+    const url = 'https://fluxtnsi.ddns.net/api/user/' + this.utilisateurslists[this.user_index].id ;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+
+
+    this.httpClient
+      .put(url, {'lastname': this.update_lastname,
+        'firstname': this.update_firstname,
+        'email': this.update_email,
+        'birthdate': this.update_birthday,
+        'password': this.update_password,
+        'role': this.update_role
+      }, httpOptions)
+      .subscribe(
+        (response) => {
+          let object : any;
+          object = response;
+          this.update_user_progressbar = false;
+          this.display_update_user_block = 'none';
+          this.utilisateurslists[this.user_index] = object.data;
+          return response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 }

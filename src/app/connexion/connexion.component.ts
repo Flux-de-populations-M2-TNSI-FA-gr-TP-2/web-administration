@@ -43,7 +43,6 @@ export class ConnexionComponent implements OnInit {
               this.authService.signIn();
               this.router.navigate(['home']);
           }
-          console.log(response);
           return response;
         },
         (error) => {

@@ -24,13 +24,13 @@
       <tbody>
 
       <tr *ngFor="let utilisateur of this.utilisateurslists;let i = index" >
-        <td scope="row">{{utilisateur.firstname}}</td>
         <td scope="row">{{utilisateur.lastname}}</td>
+        <td scope="row">{{utilisateur.firstname}}</td>
         <td scope="row">{{utilisateur.id}}</td>
         <td scope="row">
 
           <a  class="btn btn-info" (click)="DetailsUser(i)"><span class="glyphicon glyphicon-eye-open"></span></a>
-          <a class="btn btn-success" ><span class="glyphicon glyphicon-edit"></span></a>
+          <a class="btn btn-success"  (click)="modalUpdateUser(i)"><span class="glyphicon glyphicon-edit"></span></a>
           <a class="btn btn-danger"  (click)="onSupprimeUser(i)"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
         </tr>
@@ -40,24 +40,6 @@
 
   </div>
 </div>
-
-  <!-- Modal Ajouter -->
-  <div id="modalAdd" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ajouter un nouveau utilisateur</h4>
-        </div>
-
-
-
-      </div>
-
-    </div>
-  </div>
 
   <!-- Modal detail -->
   <div id="modalDetail" class="modal fade" role="dialog">
@@ -406,7 +388,7 @@
 
 
         <!--- Modal de la suppression d'une salle --->
-        <div >
+        <div>
           <span *ngIf="!delete_user">Voulez-vous supprimer cet utilisateur ?</span>
           <br  *ngIf="!delete_user"/><br *ngIf="!delete_user"/>
           <mat-progress-bar *ngIf="delete_user"  mode="indeterminate"></mat-progress-bar>
@@ -418,6 +400,101 @@
           </div>
         </div>
 
+
+      </mat-card>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- block pour modifier un utilisateur -->
+<div class="dialgo-block" [ngStyle]="{'display':''+display_update_user_block+''}">
+
+
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex="20%"></div>
+    <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+    </div>
+    <div class="item item-3" fxFlex="60%">
+      <br/><br/><br/>
+      <mat-card class="example-card">
+        <button mat-icon-button  (click)="closeUpdateUser()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+        <mat-progress-bar *ngIf="update_user_progressbar"  mode="indeterminate"></mat-progress-bar>
+
+        <form class="form-horizontal" *ngIf="!update_user_progressbar" >
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Nom:</label>
+              <div class="col-sm-10">
+                <input type="text" name="lastname" class="form-control"  placeholder="" value="{{this.update_lastname}}" [(ngModel)]="this.update_lastname" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Prenom:</label>
+              <div class="col-sm-10">
+                <input type="text" name="firstname" class="form-control"  value="{{this.update_firstname}}" placeholder="" [(ngModel)]="this.update_firstname" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Email:</label>
+              <div class="col-sm-10">
+                <input type="text" name="email" class="form-control"  value="{{this.update_email}}" placeholder="" [(ngModel)]="this.update_email" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Mot de passe:</label>
+              <div class="col-sm-10">
+                <input type="password" name="text" class="form-control"  placeholder="" value="{{this.update_password}}" [(ngModel)]="this.update_password" >
+              </div>
+            </div>
+
+
+
+            <div class="form-group">
+              <label class="control-label col-sm-2">Date de Naissance</label>
+              <div class="col-sm-10 " data-provide="datepicker">
+                <div class="input-group date">
+                  <input type="text" class="form-control"  value="{{this.update_birthday}}" [(ngModel)]="this.update_birthday" name="birdthday_create" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" >
+                  <span class="input-group-addon">
+                    <button class="glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" >Role:</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="role_create" [(ngModel)]="this.update_role">
+                  <option value="0">ADMIN</option>
+                  <option value="0">USER</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <!--            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <button type="submit" class="btn btn-success" (click)="UpdateSubmit()" >Modifier</button>
+          </div>
+
+        </form>
 
       </mat-card>
 

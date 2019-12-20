@@ -75,8 +75,6 @@ export class EtablissementsComponent implements OnInit {
           this.progressbar_display_establishment = false;
           this.ourobject = response;
           this.batimentlist = this.ourobject.data;
-          //console.log(this.utilisateurslists);
-          console.log(response);
           return response;
         },
         (error) => {
@@ -107,7 +105,6 @@ export class EtablissementsComponent implements OnInit {
           this.batimentlist[this.index_room].rooms.push(object.data);
           this.addroom_progressbar = false;
           this.addroom_display = 'none';
-          //console.log(response);
           return response;
         },
         (error) => {
@@ -120,12 +117,9 @@ export class EtablissementsComponent implements OnInit {
       this.batiment = this.batimentlist[index];
       this.index_room = index;
       this.addroom_display = 'block';
-     //console.log(this.batiment);
   }
 
   getSallesById( index_batiment, index_room) {
-    /*console.log(index_batiment);
-    console.log(index_room);*/
     this.item_batiment = index_batiment;
     this.item_room = index_room;
     this.display_global_block = 'block';
@@ -221,8 +215,6 @@ export class EtablissementsComponent implements OnInit {
   }
 
   Submit_Update_salle() {
-      console.log("N° : "+this.room_floor_update_value);
-      console.log("Nom : "+this.room_name_update_value);
       this.progressbar_update_room = true;
       this.room_update = false;
 
