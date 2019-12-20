@@ -26,12 +26,12 @@
       <tr *ngFor="let utilisateur of this.utilisateurslists;let i = index" >
         <td scope="row">{{utilisateur.firstname}}</td>
         <td scope="row">{{utilisateur.lastname}}</td>
-        <td scope="row">{{utilisateur.lastname}}</td>
+        <td scope="row">{{utilisateur.id}}</td>
         <td scope="row">
 
           <a  class="btn btn-info" (click)="DetailsUser(i)"><span class="glyphicon glyphicon-eye-open"></span></a>
-          <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#modalUpdate"><span class="glyphicon glyphicon-edit"></span></a>
-          <a href="#" class="btn btn-danger"  data-toggle="modal" data-target="#modalDelete"><span class="glyphicon glyphicon-trash"></span></a>
+          <a class="btn btn-success" ><span class="glyphicon glyphicon-edit"></span></a>
+          <a class="btn btn-danger"  (click)="onSupprimeUser(i)"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
         </tr>
 
@@ -370,6 +370,53 @@
 
           </div>
         </form>
+
+
+      </mat-card>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<!--Le block pour supprimer un utilisateur-->
+<div class="dialgo-block" [ngStyle]="{'display':''+display_delete_user_block+''}">
+
+
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex="20%"></div>
+    <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+    </div>
+    <div class="item item-3" fxFlex="60%">
+      <br/><br/><br/>
+      <mat-card class="example-card">
+        <button mat-icon-button  (click)="closeDeleteUser()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+
+        <!--- Modal de la suppression d'une salle --->
+        <div >
+          <span *ngIf="!delete_user">Voulez-vous supprimer cet utilisateur ?</span>
+          <br  *ngIf="!delete_user"/><br *ngIf="!delete_user"/>
+          <mat-progress-bar *ngIf="delete_user"  mode="indeterminate"></mat-progress-bar>
+          <mat-divider></mat-divider>
+          <br/>
+          <div *ngIf="!delete_user">
+            <button mat-button (click)="deleteUser()">Oui</button>
+            <button mat-button (click)="cancel_user()" >Non</button>
+          </div>
+        </div>
 
 
       </mat-card>

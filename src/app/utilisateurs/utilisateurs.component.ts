@@ -27,6 +27,9 @@ export class UtilisateursComponent implements OnInit {
   details_password: string = '';
   details_birthday: string = '';
   details_role: string = '';
+  display_delete_user_block: string = 'none';
+  delete_user: boolean = false;
+  user_index: number;
 
 
 
@@ -138,6 +141,45 @@ export class UtilisateursComponent implements OnInit {
 
   closeDetailsUser() {
     this.display_details_user_block = 'none';
+  }
+
+  onSupprimeUser(index) {
+    this.display_delete_user_block = 'block';
+    this.user_index = index;
+  }
+
+  cancel_user() {
+    this.display_delete_user_block = 'none';
+  }
+
+  deleteUser(index) {
+    const url = 'https://fluxtnsi.ddns.net/api/user/' + this.utilisateurslists[ this.user_index].id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+    this.delete_user = true;
+
+    this.httpClient
+      .delete(url, httpOptions)
+      .subscribe(
+        (response) => {
+          this.utilisateurslists.splice(this.user_index, 1);
+          this.delete_user = false;
+          this.display_delete_user_block = 'none';
+          return response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  closeDeleteUser() {
+    this.display_delete_user_block = 'none';
+
   }
 
 }
