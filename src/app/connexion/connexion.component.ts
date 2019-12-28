@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ConstService} from '../service/Const.service';
 import {AuthService} from '../service/auth.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-connexion',
@@ -18,6 +19,7 @@ export class ConnexionComponent implements OnInit {
 
   constructor(private  router: Router
               , private httpClient: HttpClient
+              , public snackBar: MatSnackBar
               , private authService: AuthService
               , private constance: ConstService) {
 
@@ -69,6 +71,12 @@ export class ConnexionComponent implements OnInit {
           /*console.log('Une erreur vient de se produire !!');*/
        /* }
       );*/
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

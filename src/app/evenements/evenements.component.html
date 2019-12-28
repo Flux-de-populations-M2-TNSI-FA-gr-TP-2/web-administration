@@ -8,7 +8,7 @@
   <mat-progress-bar *ngIf="progressbar_display_evenement" mode="indeterminate"></mat-progress-bar>
 
    <div class="well well-lg">
-    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalAdd"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter</a>
+    <a  class="btn btn-info"  (click)="modaladdEvent()" ><span class="glyphicon glyphicon-plus-sign"></span> Ajouter</a>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -23,8 +23,8 @@
           <td scope="row">{{evenement.name}}</td>
           <td scope="row">{{evenement.status}}</td>
           <td scope="row">
-            <a href="#"  id="{{evenement.id}}" (click)="getEvenementById(i)" class="btn btn-info" data-toggle="modal" data-target="#modalDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
-            <a href="#"  id="{{evenement.id}}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href="#"   (click)="getEvenementById(i)" class="btn btn-info" data-toggle="modal" data-target="#modalDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <a href="#"  class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><span class="glyphicon glyphicon-trash"></span></a>
           </td>
         </tr>
         </tbody>
@@ -33,101 +33,50 @@
 </div>
 
 
-  <!-- Modal Ajouter -->
-  <div id="modalAdd" class="modal fade" role="dialog">
-    <div class="modal-dialog">
 
-     <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Detail de l'evenement</h4>
-        </div>
-        <form class="form-horizontal" method="POST" action="#">
-        <div class="modal-body">
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Evenement:</label>
-              <div class="col-sm-10">
-                <input type="text" name="evenement-name" value="{{evenementName}}" class="form-control"  placeholder="" >
-              </div>
-            </div>
 
-            <app-date-picker [datepicker_libelle]="datepickerStart"></app-date-picker>
+<!-- Modal detail -->
+<div id="modalDetail" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-            <app-date-picker [datepicker_libelle]="datepickerEnd"></app-date-picker>
-
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Status actuel:</label>
-              <div class="col-sm-10">
-                <input name="evenement-status" value="{{evenementStatus}}" class="form-control"  placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Group de l'evenement:</label>
-              <div class="col-sm-10">
-                <input name="evenement-group-name" value="{{evenementGroupeName}}" class="form-control"  placeholder="">
-              </div>
-            </div>
-        </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success" data-dismiss="modal">Enregistrer</button>
-          </div>
-        </form>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Detail de l'evenement</h4>
       </div>
+      <form class="form-horizontal" method="POST" action="#">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="control-label col-sm-2" >Evenement:</label>
+            <div class="col-sm-10">
+              <input disabled="false" type="text" name="evenement-name" value="{{evenementName}}" class="form-control"  placeholder="" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" >Date de debut:</label>
+            <div class="col-sm-10">
+              <input disabled="false" type="text" name="evenement-start" value="{{evenementStart}}" class="form-control"  placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" >Date de fin:</label>
+            <div class="col-sm-10">
+              <input disabled="false" type="text" name="evenement-end" value="{{evenementEnd}}" class="form-control"  placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" >Status actuel:</label>
+            <div class="col-sm-10">
+              <input disabled="false" name="evenement-status" value="{{evenementStatus}}" class="form-control"  placeholder="">
+            </div>
+          </div>
+
+        </div>
+      </form>
     </div>
   </div>
-
-  <!-- Modal detail -->
-  <div id="modalDetail" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Detail de l'evenement</h4>
-        </div>
-        <form class="form-horizontal" method="POST" action="#">
-        <div class="modal-body">
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Evenement:</label>
-              <div class="col-sm-10">
-                <input disabled="false" type="text" name="evenement-name" value="{{evenementName}}" class="form-control"  placeholder="" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Date de debut:</label>
-              <div class="col-sm-10">
-                <input disabled="false" type="text" name="evenement-start" value="{{evenementStart}}" class="form-control"  placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Date de fin:</label>
-              <div class="col-sm-10">
-                <input disabled="false" type="text" name="evenement-end" value="{{evenementEnd}}" class="form-control"  placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Status actuel:</label>
-              <div class="col-sm-10">
-                <input disabled="false" name="evenement-status" value="{{evenementStatus}}" class="form-control"  placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Group de l'evenement:</label>
-              <div class="col-sm-10">
-                <input disabled="false" name="evenement-group-name" value="{{evenementGroupeName}}" class="form-control"  placeholder="">
-              </div>
-            </div>
-        </div>
-          <div class="modal-footer">
-<!--            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-            <button type="submit" class="btn btn-success" data-dismiss="modal">Enregistrer</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+</div>
 
   <!-- Modal Delete -->
   <div id="modalDelete" class="modal fade" role="dialog">
@@ -150,3 +99,123 @@
 
     </div>
   </div>
+
+
+  <!-- Modal to add the event -->
+  <div class="dialgo-block" [ngStyle]="{'display':''+display_add_event_block+''}">
+
+    <div class="container"
+         fxLayout
+         fxLayout.xs="column"
+         fxLayoutAlign="center"
+         fxLayoutGap="10px"
+         fxLayoutGap.xs="0">
+      <div class="item item-1" fxFlex="20%"></div>
+      <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+      </div>
+      <div class="item item-3" fxFlex="60%">
+        <br/><br/><br/>
+        <mat-card class="example-card">
+
+          <button mat-icon-button  >
+            <mat-icon aria-label="Example icon-button with a heart icon" (click)="CloseEventAdd()" >close</mat-icon>
+          </button>
+          <br/>
+          <mat-divider ></mat-divider>
+          <br/>
+          <mat-progress-bar *ngIf="progressbar_create_event" mode="indeterminate"></mat-progress-bar>
+
+          <form class="form-horizontal"  *ngIf="!progressbar_create_event"  (ngSubmit)="onaddEvent(fcreate)"  #fcreate="ngForm">
+            <div class="modal-body">
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Evenement:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="evenement_name_create" class="form-control"  placeholder="" ngModel>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2">Date de début</label>
+                <div class="col-sm-10 " data-provide="datepicker">
+                  <div class="input-group date">
+                    <input type="text" class="form-control" name="date_debut_create" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" ngModel>
+                    <span class="input-group-addon">
+                         <button class="glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2">Date de fin</label>
+                <div class="col-sm-10 " data-provide="datepicker">
+                  <div class="input-group date">
+                    <input type="text" class="form-control" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker" name="date_de_fin_create" ngModel>
+                    <span class="input-group-addon">
+                         <button class="glyphicon glyphicon-calendar" (click)="d1.toggle()" type="button"></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Status actuel:</label>
+                <div class="col-sm-10">
+                  <input  name="evenement_status_create" class="form-control"  placeholder="" type="text" ngModel>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Group de l'evenement:</label>
+                <div class="col-sm-10">
+                  <input  name="evenement_group_name_create" class="form-control"  placeholder="" type="number" ngModel>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!--            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+              <button type="submit" class="btn btn-success" data-dismiss="modal">Enregistrer</button>
+            </div>
+          </form>
+          <br/>
+          <mat-divider ></mat-divider>
+
+        </mat-card>
+
+      </div>
+    </div>
+
+  </div>
+
+<!-- Modal to delete the event -->
+<div class="dialgo-block" [ngStyle]="{'display':''+display_delete_event_block+''}">
+
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex="20%"></div>
+    <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+    </div>
+    <div class="item item-3" fxFlex="60%">
+      <br/><br/><br/>
+      <mat-card class="example-card">
+
+        <button mat-icon-button  >
+          <mat-icon aria-label="Example icon-button with a heart icon" (click)="CloseEventAdd()" >close</mat-icon>
+        </button>
+        <br/>
+        <mat-divider ></mat-divider>
+        <br/>
+        <mat-progress-bar *ngIf="progressbar_create_event" mode="indeterminate"></mat-progress-bar>
+
+        <br/>
+        <mat-divider ></mat-divider>
+
+      </mat-card>
+
+    </div>
+  </div>
+
+</div>
