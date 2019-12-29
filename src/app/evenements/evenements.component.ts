@@ -30,6 +30,8 @@ export class EvenementsComponent implements OnInit {
   progressbar_create_event : boolean = false;
   display_add_event_block : string = 'none';
   display_delete_event_block : string = 'none';
+  progressbar_delete_event : boolean = false;
+  evenement : any;
 
   constructor(private constance: ConstService
               , private httpClient: HttpClient
@@ -57,6 +59,11 @@ export class EvenementsComponent implements OnInit {
       }
     });
 
+  }
+
+  displayDialogdelete(index) {
+    this.evenement = this.evenements[index];
+    this.display_delete_event_block = 'block';
   }
 
    getListEvent() {
@@ -145,6 +152,15 @@ export class EvenementsComponent implements OnInit {
         }
       );
 
+
+  }
+
+  closeEventDelete() {
+    this.display_delete_event_block = 'none';
+  }
+
+
+  SubmitEventDelete() {
 
   }
 

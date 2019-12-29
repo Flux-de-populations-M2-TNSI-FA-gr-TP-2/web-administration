@@ -43,6 +43,9 @@ export class EtablissementsComponent implements OnInit {
 
   progressbar_update_room: boolean = false;
 
+  display_create_location_block: string = 'none';
+
+  progressbar_create_location: boolean = false;
 
   constructor(private constance: ConstService
     , public snackBar: MatSnackBar
@@ -75,6 +78,9 @@ export class EtablissementsComponent implements OnInit {
           this.progressbar_display_establishment = false;
           this.ourobject = response;
           this.batimentlist = this.ourobject.data;
+
+          console.log(this.batimentlist);
+
           return response;
         },
         (error) => {
@@ -248,6 +254,49 @@ export class EtablissementsComponent implements OnInit {
       );
 
 
+  }
+
+
+  closeCreateLocation() {
+    this.display_create_location_block = 'none';
+  }
+
+  onaddLocation(form: NgForm) {
+    const url = 'https://fluxtnsi.ddns.net/api/location/create';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+
+    this.progressbar_create_location = true;
+    this.httpClient
+      .post(url,{'name': form.value['name_location_create'],
+        'address': form.value['adresse_location_create'],
+        'image': ''
+      }, httpOptions)
+      .subscribe(
+        (response) => {
+          let object : any;
+          object = response;
+          this.progressbar_create_location = false;
+          this.batimentlist.push(object.data);
+          console.log(response);
+          /*this.utilisateurslists.push(object.user);*/
+          this.closeCreateLocation();
+          return response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+
+  }
+
+  modalAddLocation() {
+    this.display_create_location_block = 'block';
   }
 
 }

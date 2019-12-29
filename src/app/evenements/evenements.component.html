@@ -24,7 +24,7 @@
           <td scope="row">{{evenement.status}}</td>
           <td scope="row">
             <a href="#"   (click)="getEvenementById(i)" class="btn btn-info" data-toggle="modal" data-target="#modalDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
-            <a href="#"  class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><span class="glyphicon glyphicon-trash"></span></a>
+            <a  (click)="displayDialogdelete(i)" *ngIf="false" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
           </td>
         </tr>
         </tbody>
@@ -203,15 +203,20 @@
       <mat-card class="example-card">
 
         <button mat-icon-button  >
-          <mat-icon aria-label="Example icon-button with a heart icon" (click)="CloseEventAdd()" >close</mat-icon>
+          <mat-icon aria-label="Example icon-button with a heart icon" (click)="closeEventDelete()" >close</mat-icon>
         </button>
         <br/>
         <mat-divider ></mat-divider>
         <br/>
-        <mat-progress-bar *ngIf="progressbar_create_event" mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar *ngIf="progressbar_delete_event" mode="indeterminate"></mat-progress-bar>
+        <span>Voulez-vous supprimer cet évenement ?</span>
+        <br/> <br/>
+        <div>
 
-        <br/>
-        <mat-divider ></mat-divider>
+          <mat-divider ></mat-divider>
+          <button (click)="SubmitEventDelete()" mat-button>Oui</button>
+          <button (click)="closeEventDelete()" mat-button>Non</button>
+        </div>
 
       </mat-card>
 
