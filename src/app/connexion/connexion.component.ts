@@ -38,12 +38,16 @@ export class ConnexionComponent implements OnInit {
       .post(url, {'email': form.value['email'],'password': form.value['password']})
       .subscribe(
         (response) => {
+          //console.log(response);
           this.authService.sessions = response;
-          if (this.authService.sessions.success == true) {
+          if (this.authService.sessions.user.role === 'admin') {
               this.progressbar_status = false;
               this.error = false;
               this.authService.signIn();
               this.router.navigate(['home']);
+          } else {
+            this.progressbar_status = false;
+            this.openSnackBar("Connexion échouée, votre compte n'est pas un compte administrateur ", "erreur");
           }
           return response;
         },
