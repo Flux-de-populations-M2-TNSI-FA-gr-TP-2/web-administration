@@ -59,6 +59,10 @@ export class EtablissementsComponent implements OnInit {
   progressbar_delete_batiment: boolean = false;
 
   batiment_item_boss: number;
+  batiment_update: boolean = false;
+  progressbar_update_batiment: boolean = false;
+  batiment_name_update_value: any;
+  batiment_adresse_update_value: any;
 
   constructor(private constance: ConstService
     , public snackBar: MatSnackBar
@@ -352,6 +356,7 @@ export class EtablissementsComponent implements OnInit {
       this.boolean_details_location = false;
       this.suppression_batiment = false;
       this.boolean_close_batiment = true;
+      this.batiment_update = false;
     }
   }
 
@@ -371,6 +376,13 @@ export class EtablissementsComponent implements OnInit {
   }
 
   Update_location_crud_salle() {
+    //this.suppression_batiment = true;
+    this.display_boolean_menu = false;
+    this.batiment_update = true;
+    this.icon_location_crud_close = 'arrow_back';
+    this.boolean_close_batiment = false;
+    this.batiment_name_update_value = this.batiment_boss.name;
+    this.batiment_adresse_update_value = this.batiment_boss.address;
 
   }
 
@@ -413,6 +425,42 @@ export class EtablissementsComponent implements OnInit {
           this.openSnackBar("Une erreur réseau vient de se produire !!", "erreur");
         }
       );
+
+  }
+
+  Submit_Update_batiment() {
+    const url = 'https://fluxtnsi.ddns.net/api/location/' + this.batiment_boss.id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+    this.progressbar_update_batiment = true;
+    this.batiment_update = false;
+
+    //console.log(this.batiment_boss);
+
+    this.batiment_boss.name = this.batiment_name_update_value;
+    this.batiment_boss.address = this.batiment_adresse_update_value;
+
+    this.httpClient
+      .put(url, this.batiment_boss, httpOptions)
+      .subscribe(
+        (response) => {
+          this.batimentlist[this.batiment_item_boss].name = this.batiment_name_update_value;
+          this.batimentlist[this.batiment_item_boss].address = this.batiment_adresse_update_value;
+          this.progressbar_update_batiment = false;
+          this.batiment_update = false;
+          this.cancel_delete_batiment_room();
+          this.openSnackBar("Votre batiment vient d'être modifié avec succès !!", "succès!");
+
+          return response;
+        },
+        (error) => {
+        }
+      );
+
 
   }
 

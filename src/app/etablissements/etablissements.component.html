@@ -359,10 +359,42 @@
         </div>
       </div>
 
+
+      <!--  Modal de la modification d'une batiment -->
+      <mat-progress-bar *ngIf="progressbar_update_batiment"  mode="indeterminate"></mat-progress-bar>
+      <form   *ngIf="batiment_update">
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" >Nom:</label>
+            <div class="col-sm-10">
+              <input type="text" name="name_room_update" class="form-control"  placeholder="" value="{{batiment_name_update_value}}"   [(ngModel)]="batiment_name_update_value">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" >Adresse:</label>
+            <div class="col-sm-10">
+              <input type="text" name="floor_room_update" class="form-control"  placeholder=""  value="{{batiment_adresse_update_value}}" [(ngModel)]="batiment_adresse_update_value">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <br/><br/>
+          <button type="button" class="btn btn-success"  (click)="Submit_Update_batiment()" >Modifier</button>
+        </div>
+      </form>
+
+
+
     </mat-card>
 
         </div>
         </div>
+
+
 
   </div>
 
