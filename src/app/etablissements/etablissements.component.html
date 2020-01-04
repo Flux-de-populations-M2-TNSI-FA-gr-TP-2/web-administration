@@ -15,7 +15,7 @@
     <a  class="btn btn-info" (click)="modalAddLocation()"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter Etablissement</a>
   <div *ngFor="let batiment of this.batimentlist;let i=index"  >
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 cursor_du_boss" (click)="onDisplayCrudBlock(i)">
         <h2><span class="label label-default">{{batiment.name}}</span></h2>
       </div>
       <div lass="col-sm-6" class="button-addroom">
@@ -285,5 +285,85 @@
 
 </div>
 
+
+  <!--Le block pour gérer le CRUD d'un batiment-->
+  <div class="dialgo-block" [ngStyle]="{'display':''+display_crud_location_block+''}">
+
+    <br/><br/><br/>
+    <div class="container"
+         fxLayout
+         fxLayout.xs="column"
+         fxLayoutAlign="center"
+         fxLayoutGap="10px"
+         fxLayoutGap.xs="0">
+      <div class="item item-1" fxFlex="20%"></div>
+      <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+      </div>
+      <div class="item item-3" fxFlex="60%">
+
+    <mat-card class="example-card">
+
+      <button mat-icon-button  >
+        <mat-icon aria-label="Example icon-button with a heart icon"  (click)="OnClose_location_create_block()"  >{{icon_location_crud_close}}</mat-icon>
+      </button>
+
+      <mat-card-content>
+        <div class="connexion-form">
+          <mat-divider ></mat-divider>
+          <br/>
+          <div *ngIf="display_boolean_menu">
+            <mat-divider></mat-divider>
+            <br/>
+            <mat-card-header color="primary" class="details-block cursor_du_boss" (click)="display_location_crud_details()">
+              <mat-card-title color="primary" class="title-size">Détails</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <br/>
+            <mat-card-header color="primary" class="details-block cursor_du_boss" (click)="onsupprimer_location_crud_salle()">
+              <mat-card-title color="primary" class="title-size">Supprimer</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <br/>
+            <mat-card-header color="primary" class="details-block cursor_du_boss" (click)="Update_location_crud_salle()" >
+              <mat-card-title color="primary" class="title-size">Modifier</mat-card-title>
+            </mat-card-header>
+
+            <mat-divider></mat-divider>
+          </div>
+
+        </div>
+
+        <!-- block pour afficher les détails d'une salle -->
+        <div *ngIf="boolean_details_location">
+          <mat-divider></mat-divider>
+          <br/>
+          <span><b>Etablissement : </b>{{this.etablissement_name}}</span>
+          <br/>
+          <span><b>Adresse : </b> {{this.etablissement_adresse}}</span>
+          <br/><br/>
+          <mat-divider></mat-divider>
+        </div>
+
+      </mat-card-content>
+
+      <!--- Modal de la suppression d'une salle --->
+      <div *ngIf="suppression_batiment">
+        <span *ngIf="!progressbar_delete_batiment">Voulez-vous supprimer cette salle ?</span>
+        <br *ngIf="!progressbar_delete_batiment"/><br *ngIf="!progressbar_delete_batiment"/>
+        <mat-progress-bar *ngIf="progressbar_delete_batiment" mode="indeterminate"></mat-progress-bar>
+        <mat-divider></mat-divider>
+        <br/>
+        <div *ngIf="!progressbar_delete_batiment">
+          <button mat-button (click)="delete_batiment_room()">Oui</button>
+          <button mat-button (click)="cancel_delete_batiment_room()">Non</button>
+        </div>
+      </div>
+
+    </mat-card>
+
+        </div>
+        </div>
+
+  </div>
 
 

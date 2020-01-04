@@ -16,6 +16,7 @@ export class EtablissementsComponent implements OnInit {
   batimentlist: any;
   progressbar_display_establishment: boolean = false;
   batiment: any;
+  batiment_boss: any;
   index_room: any;
   addroom_display: string = 'none';
   display_global_block: string = 'none';
@@ -29,6 +30,7 @@ export class EtablissementsComponent implements OnInit {
   room_id : number;
 
   icon_close : string = 'close';
+  icon_location_crud_close: string = 'close';
   boolean_close: boolean = true;
   suppression_salle: boolean = false;
   progressbar_delete_room: boolean = false;
@@ -46,6 +48,17 @@ export class EtablissementsComponent implements OnInit {
   display_create_location_block: string = 'none';
 
   progressbar_create_location: boolean = false;
+  display_crud_location_block: string = 'none';
+  display_boolean_menu: boolean = true;
+  boolean_details_location: boolean = false;
+  etablissement_name: string = '';
+  etablissement_adresse : string = '';
+
+  boolean_close_batiment : boolean = true;
+  suppression_batiment: boolean = false;
+  progressbar_delete_batiment: boolean = false;
+
+  batiment_item_boss: number;
 
   constructor(private constance: ConstService
     , public snackBar: MatSnackBar
@@ -79,8 +92,6 @@ export class EtablissementsComponent implements OnInit {
           this.ourobject = response;
           this.batimentlist = this.ourobject.data;
 
-          console.log(this.batimentlist);
-
           return response;
         },
         (error) => {
@@ -100,7 +111,7 @@ export class EtablissementsComponent implements OnInit {
     };
 
     this.httpClient
-      .post(url,{ 'name': form.value['name_room'] , 'floor': form.value['floor_room'],'location_id': this.batiment.id},httpOptions)
+      .post(url,{'name': form.value['name_room'] , 'floor': form.value['floor_room'],'location_id': this.batiment.id},httpOptions)
       .subscribe(
         (response) => {
           let object : any;
@@ -111,10 +122,14 @@ export class EtablissementsComponent implements OnInit {
           this.batimentlist[this.index_room].rooms.push(object.data);
           this.addroom_progressbar = false;
           this.addroom_display = 'none';
+          this.openSnackBar("Votre nouvelle salle vient d'être ajoutée avec succès !", "succès");
           return response;
         },
         (error) => {
           console.log(error);
+          this.addroom_progressbar = false;
+          this.addroom_display = 'none';
+          this.openSnackBar("Une erreur réseau vient de se produire", "Erreur");
         }
       );
   }
@@ -201,10 +216,14 @@ export class EtablissementsComponent implements OnInit {
           this.progressbar_delete_room = false;
           this.display_global_block = 'none';
           this.batimentlist[this.item_batiment].rooms.splice(this.item_room,1);
+          this.openSnackBar("Votre suppression vient d'être éffectuée avec succès ! ", "succès");
           this.cancel_delete_room();
           return response;
         },
         (error) => {
+          this.progressbar_delete_room = false;
+          this.display_global_block = 'none';
+          this.openSnackBar("Une erreur réseau vient de se produire !", "erreur");
           console.log(error);
         }
       );
@@ -241,6 +260,7 @@ export class EtablissementsComponent implements OnInit {
           /*this.progressbar_delete_room = false;
           this.display_global_block = 'none';
           this.batimentlist[this.item_batiment].rooms.splice(this.item_room,1);*/
+          this.openSnackBar("Votre modification vient d'être éffectuée avec succès ! ", "succès");
           this.progressbar_update_room = false;
           this.batimentlist[this.item_batiment].rooms[this.item_room].name = this.room_name_update_value;
           this.batimentlist[this.item_batiment].rooms[this.item_room].floor = this.room_floor_update_value;
@@ -249,6 +269,10 @@ export class EtablissementsComponent implements OnInit {
           return response;
         },
         (error) => {
+          this.openSnackBar("Une erreur réseau vient de se produire", "erreur");
+          this.progressbar_update_room = false;
+          this.display_global_block = 'none';
+          this.cancel_delete_room();
           console.log(error);
         }
       );
@@ -282,12 +306,15 @@ export class EtablissementsComponent implements OnInit {
           object = response;
           this.progressbar_create_location = false;
           this.batimentlist.push(object.data);
-          console.log(response);
+          this.openSnackBar("Votre batiment vient d'être ajoutée avec succès !", "succès");
+          //console.log(response);
           /*this.utilisateurslists.push(object.user);*/
           this.closeCreateLocation();
           return response;
         },
         (error) => {
+          this.progressbar_create_location = false;
+          this.openSnackBar("Une erreur réseau vient de se produire", "erreur");
           console.log(error);
         }
       );
@@ -297,6 +324,96 @@ export class EtablissementsComponent implements OnInit {
 
   modalAddLocation() {
     this.display_create_location_block = 'block';
+  }
+
+  onDisplayCrudBlock(index) {
+    //let batiment_boss : any;
+    this.display_crud_location_block =  'block';
+    this.batiment_boss = this.batimentlist[index];
+    //console.log(this.batiment_boss);
+    this.etablissement_name = this.batiment_boss.name;
+    this.etablissement_adresse = this.batiment_boss.address;
+    this.batiment_item_boss = index;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  OnClose_location_create_block() {
+    if (this.boolean_close_batiment) {
+      this.display_crud_location_block = 'none';
+    } else {
+      this.display_crud_location_block = 'block';
+      this.icon_location_crud_close = 'close';
+      this.display_boolean_menu = true;
+      this.boolean_details_location = false;
+      this.suppression_batiment = false;
+      this.boolean_close_batiment = true;
+    }
+  }
+
+  display_location_crud_details() {
+    this.display_boolean_menu = false;
+    this.boolean_details_location = true;
+    this.icon_location_crud_close = 'arrow_back';
+    this.boolean_close_batiment = false;
+  }
+
+  onsupprimer_location_crud_salle() {
+    this.suppression_batiment = true;
+    this.display_boolean_menu = false;
+    this.suppression_batiment = true;
+    this.icon_location_crud_close = 'arrow_back';
+    this.boolean_close_batiment = false;
+  }
+
+  Update_location_crud_salle() {
+
+  }
+
+  cancel_delete_batiment_room() {
+    this.display_crud_location_block = 'none';
+    this.suppression_batiment = false;
+    this.display_boolean_menu = true;
+    this.suppression_batiment = false;
+    this.icon_location_crud_close = 'close';
+    this.boolean_close_batiment = true;
+  }
+
+  delete_batiment_room() {
+    //this.batimentlist.splice(this.batiment_item_boss,1);
+    const url = 'https://fluxtnsi.ddns.net/api/location/' + this.batiment_boss.id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.authService.sessions.access_token
+      })
+    };
+    this.progressbar_delete_batiment = true;
+
+    /*console.log(this.batiment_boss);
+    console.log(this.batiment_item_boss);*/
+    this.httpClient
+      .delete(url, httpOptions)
+      .subscribe(
+        (response) => {
+          this.progressbar_delete_batiment = false;
+          this.cancel_delete_batiment_room();
+          this.batimentlist.splice(this.batiment_item_boss,1);
+          this.openSnackBar("Votre batiment vient d'être supprimé avec succès !!", "succès!");
+
+          return response;
+        },
+        (error) => {
+          this.progressbar_delete_batiment = false;
+          this.cancel_delete_batiment_room();
+          this.openSnackBar("Une erreur réseau vient de se produire !!", "erreur");
+        }
+      );
+
   }
 
 }
