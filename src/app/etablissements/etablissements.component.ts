@@ -95,7 +95,7 @@ export class EtablissementsComponent implements OnInit {
           this.progressbar_display_establishment = false;
           this.ourobject = response;
           this.batimentlist = this.ourobject.data;
-
+          console.log(this.batimentlist);
           return response;
         },
         (error) => {

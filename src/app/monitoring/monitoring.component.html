@@ -1,47 +1,73 @@
 <app-menu></app-menu>
-<br/><br/><br/><br/>
-<div class="container-fluid bootstrap snippet" *ngIf="!this.constance.progressbar_deconnexion">
-  <ol class="breadcrumb">
-    <li>AB2</li>
-  </ol>
-  <div class="">
-    <div class="row">
-      <div class="col-lg-2 col-sm-6">
-        <div class="circle-tile ">
-          <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-thermometer-full fa-fw fa-3x"></i></div></a>
-          <div class="circle-tile-content dark-blue">
-            <div class="circle-tile-description text-faded"> Temperature</div>
-            <div class="circle-tile-number text-faded ">265 °</div>
-            <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+<br/><br/><br/>
+
+<div *ngIf="progressbar_display_establishment" class="progressbarboss">
+  <mat-progress-bar  mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngFor="let batiment of this.batimentlist;let i=index">
+<div *ngFor="let salles of batiment.rooms; let j = index" >
+
+  <div class="container-fluid bootstrap snippet" *ngIf="!this.constance.progressbar_deconnexion">
+    <ol class="breadcrumb">
+      <li>{{salles.name}}</li>
+    </ol>
+    <div *ngFor="let sensor of salles.sensors">
+
+    <div class="">
+      <div class="row">
+        <div class="col-lg-2 col-sm-6">
+          <div class="circle-tile ">
+            <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-thermometer-full fa-fw fa-3x"></i></div></a>
+            <div class="circle-tile-content dark-blue">
+              <div class="circle-tile-description text-faded"> Temperature</div>
+              <div class="circle-tile-number text-faded ">{{sensor.infos.temperature}} °</div>
+              <a class="circle-tile-footer" href="#"><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
           </div>
         </div>
+
+        <div class="col-lg-2 col-sm-6">
+          <div class="circle-tile ">
+            <a href="#"><div class="circle-tile-heading red"><i class="fa fa-adjust fa-fw fa-3x"></i></div></a>
+            <div class="circle-tile-content red">
+              <div class="circle-tile-description text-faded">Luminance </div>
+              <div class="circle-tile-number text-faded ">{{sensor.infos.luminance}} lux</div>
+              <a class="circle-tile-footer" ><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-sm-6">
+          <div class="circle-tile ">
+            <a href="#"><div class="circle-tile-heading red"><i class="fa fa-tint fa-fw fa-3x"></i></div></a>
+            <div class="circle-tile-content red">
+              <div class="circle-tile-description text-faded">Humidite </div>
+              <div class="circle-tile-number text-faded ">Inconnu</div>
+              <a class="circle-tile-footer" ><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-sm-6">
+          <div class="circle-tile ">
+            <a href="#"><div class="circle-tile-heading blue"><i class="fa fa-users  fa-fw fa-3x"></i></div></a>
+            <div class="circle-tile-content blue">
+              <div class="circle-tile-description text-faded">Nombre de personnes </div>
+              <div class="circle-tile-number text-faded ">Inconnu</div>
+              <a class="circle-tile-footer" ><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="col-lg-2 col-sm-6">
-        <div class="circle-tile ">
-          <a href="#"><div class="circle-tile-heading red"><i class="fa fa-tint fa-fw fa-3x"></i></div></a>
-          <div class="circle-tile-content red">
-            <div class="circle-tile-description text-faded">Humidite </div>
-            <div class="circle-tile-number text-faded ">10 %</div>
-            <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
-          </div>
-        </div>
       </div>
 
-      <div class="col-lg-2 col-sm-6">
-        <div class="circle-tile ">
-          <a href="#"><div class="circle-tile-heading blue"><i class="fa fa-users  fa-fw fa-3x"></i></div></a>
-          <div class="circle-tile-content blue">
-            <div class="circle-tile-description text-faded">Nombre de personnes </div>
-            <div class="circle-tile-number text-faded ">10</div>
-            <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
-          </div>
-        </div>
-      </div>
 
     </div>
-  </div>
+</div>
 
 
-
+</div>
 </div>
